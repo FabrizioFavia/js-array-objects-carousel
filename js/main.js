@@ -32,6 +32,26 @@ const images = [
 ];
 let slideArray = [];
 
+/* FUNZIONE PER SLIDE SUCCESSIVA */
+function nextSlide() {
+    if (currentslide == slideArray.length - 1) {
+        currentslide = 0;
+    } else {
+        currentslide += 1;
+    }
+
+    classToggle();
+}
+
+function previousSlide() {
+    if (currentslide == 0) {
+        currentslide = slideArray.length - 1;
+    } else {
+        currentslide -= 1;
+    }
+    classToggle();
+}
+
 /* FUNZIONE PER AGGIUNGERE O RIMUOVERE LA CLASSE HIDDEN */
 function classToggle() {
     slideArray.map((element, i) => {
@@ -69,28 +89,15 @@ images.forEach(element => {
     slideContainer.append(imgBox);
 });
 
-/* FUNZIONE PER SLIDE SUCCESSIVA */
-nextBtn.addEventListener("click", function () {
+nextBtn.addEventListener("click", nextSlide);
 
-    if (currentslide == slideArray.length - 1) {
-        currentslide = 0;
-    } else {
-        currentslide += 1;
-    }
+backBtn.addEventListener("click", previousSlide);
 
-    classToggle();
-});
+/* AUTOPLAY */
+let timer = setInterval(() =>
+    nextSlide()
+, 1 * 3000);
 
 
-backBtn.addEventListener("click", function () {
-
-    if (currentslide == 0) {
-        currentslide = slideArray.length - 1;
-    } else {
-        currentslide -= 1;
-    }
-    classToggle();
-
-});
 
 
