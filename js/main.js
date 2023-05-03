@@ -1,6 +1,8 @@
 let path = "./";
 let slideContainer = document.getElementById("imgSlider");
-
+let nextBtn = document.getElementById("buttonRight");
+let backBtn = document.getElementById("buttonLeft");
+let currentslide = 0;
 const images = [
     {
         image: 'img/01.webp',
@@ -28,9 +30,24 @@ const images = [
         text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
     }
 ];
+let slideArray = [];
 
+/* FUNZIONE PER AGGIUNGERE O RIMUOVERE LA CLASSE HIDDEN */
+function classToggle() {
+    slideArray.map((element, i) => {
+        if (currentslide == i) {
+            element.classList.remove("hidden");
+        } else {
+            element.classList.add("hidden");
+        }
+    });
+}
 
-images.map(element => {
+/* CREARE GLI ELEMENTI NEL DOM TRAMITE FOREACH */
+images.forEach(element => {
+    let imgBox = document.createElement("div");
+    imgBox.classList.add("imgBox");
+
     let image = document.createElement("img");
     image.src = `${path}${element.image}`;
     image.classList.add("image");
@@ -44,9 +61,36 @@ images.map(element => {
     description.append(element.text);
 
     if (element !== images[0]) {
-        image.classList.add("hidden");
-        title.classList.add("hidden");
-        description.classList.add("hidden");
+        imgBox.classList.add("hidden");
     };
-    slideContainer.append(image, title, description);
-}); 
+
+    imgBox.append(image, title, description);
+    slideArray.push(imgBox);
+    slideContainer.append(imgBox);
+});
+
+/* FUNZIONE PER SLIDE SUCCESSIVA */
+nextBtn.addEventListener("click", function () {
+
+    if (currentslide == slideArray.length - 1) {
+        currentslide = 0;
+    } else {
+        currentslide += 1;
+    }
+
+    classToggle();
+});
+
+
+backBtn.addEventListener("click", function () {
+
+    if (currentslide == 0) {
+        currentslide = slideArray.length - 1;
+    } else {
+        currentslide -= 1;
+    }
+    classToggle();
+
+});
+
+
