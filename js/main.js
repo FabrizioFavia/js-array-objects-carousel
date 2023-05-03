@@ -31,14 +31,14 @@ const images = [
 
 
 images.map(element => {
-    element = document.createElement("img");
-    element.src = `${path}${element.image}`;
-    element.classList.add("image");
+    let image = document.createElement("img");
+    image.src = `${path}${element.image}`;
+    image.classList.add("image");
      if (element!==images[0]) {
-        element.classList.add("hidden");
+        image.classList.add("hidden");
      };
 
-     slideContainer.append(element);
+     slideContainer.append(image);
 });
 
 console.log(`${path}${element.image}`);
