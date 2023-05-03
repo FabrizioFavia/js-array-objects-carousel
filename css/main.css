@@ -12,6 +12,7 @@ body {background-color: #222;}
     width: 700px; 
     height: 400px;
     position: relative;
+    color: white;
 }
 
 #buttonLeft {
@@ -60,3 +61,18 @@ body {background-color: #222;}
 }
 
 .hidden {display: none;}
+
+.imgTitle{
+    position: absolute;
+    bottom: 50px;
+    right: 20px;
+    font-size: 22px;
+}
+
+.imgDscrpt{
+    position: absolute;
+    bottom: 0px;
+    padding: 0 20px;
+    font-size: 16px;
+    text-align: end;
+}
