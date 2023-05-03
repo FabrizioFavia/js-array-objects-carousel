@@ -1,4 +1,4 @@
-let path = "./img/";
+let path = "./";
 let slideContainer = document.getElementById("imgSlider");
 
 const images = [
@@ -30,5 +30,15 @@ const images = [
 ];
 
 
+images.map(element => {
+    element = document.createElement("img");
+    element.src = `${path}${element.image}`;
+    element.classList.add("image");
+     if (element!==images[0]) {
+        element.classList.add("hidden");
+     };
 
+     slideContainer.append(element);
+});
 
+console.log(`${path}${element.image}`);
